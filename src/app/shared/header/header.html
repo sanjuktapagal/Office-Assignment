@@ -1,0 +1,31 @@
+
+<header class="header">
+
+  <div class="logo">
+   <span>Myntra</span>
+  </div>
+  <div class="search-box">
+    <input
+      type="text"
+      placeholder="Search for products, brands and more..."
+    />
+  </div>
+  <div class="right">
+    <button class="cart-btn" (click)="OpenCart()">
+      <i class="fa-solid fa-cart-shopping"></i>
+      <span class="badge">{{cartService.getCartCount()}}</span>
+    </button>
+    <div class="user">
+      @if (authService.isLoggedIn()) {
+        <span class="name">{{authService.getUser().username.toUpperCase()}}</span>
+        <button class="login-btn" (click)="authService.logout()">Logout</button>
+      } @else {
+        <span class="name">GUEST</span>
+      }
+    </div>
+
+  </div>
+
+</header>
+
+<app-products></app-products>

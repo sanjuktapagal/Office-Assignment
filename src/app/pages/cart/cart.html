@@ -1,0 +1,37 @@
+<div class="cart-panel">
+<h2>Shopping Bag    <span class="close-btn" (click)="closeCart()">✕</span> </h2>
+<hr/>
+@for (item of cartItems; track $index) {
+    <div  class="cart-item">
+        <img [src]="item.thumbnail">
+            <div class="info">
+            <h4>{{item.title}}</h4>
+                <div class="qty">
+                    <button (click)="decrease(item.id)">-</button>
+                    <span>{{item.quantity}}</span>
+                    <button (click)="increase(item.id)">+</button>
+                </div>
+                <br/>
+                <br/>
+                <div class="actions">
+                    <button class="remove-btn"  (click)="removeProduct(item.id)">Remove</button>
+                    <button class="wishlist-btn" (click)="moveToWishlist(item.id)">Move to Wishlist</button>
+                </div>
+            </div>
+        <div class="price">
+        ${{item.price}}
+        </div>
+    </div>
+    <hr/>
+    
+}
+@if(cartItems.length > 0){
+    <div class="subtotal">Subtotal  : <span>${{getTotal()}}</span></div>
+    <button class="checkout" (click)="checkout()">Proceed to Checkout</button>
+}@else {
+    <div class="empty-cart">Your cart is empty</div>
+}
+</div>
+@if (showLogin) {
+  <app-login></app-login>
+}

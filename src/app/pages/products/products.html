@@ -1,0 +1,24 @@
+<div class="product-grid">
+@for (p of products; track $index) {
+    <div class="card" >
+        <div class="rating">⭐{{p.rating}}</div>
+        <img [src]="p.thumbnail" />
+
+        <div class="category">{{p.category}}</div>
+        <h3>{{p.title}}</h3>
+        <p class="desc">{{p.description | slice:0:60}}...</p>
+
+        <div class="price">${{p.price}}<span class="stock">{{p.stock}} in stock</span>
+        </div>
+
+        <div class="qty">
+            <button (click)="decrease(p.id)">-</button>
+            <span>{{map.get(p.id) || 1}}</span>
+            <button (click)="increase(p.id)">+</button>
+        </div>
+
+        <button class="cart-btn" (click)="addToCart(p)">Add to Bag</button>
+        <button class="details">Details</button>
+    </div>
+}
+</div>
